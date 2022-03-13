@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email: string = ""
-  password: string = ""
+  email: string = "admin@gmail.com"
+  password: string = "123456"
 
   loginLoading$ = this.store.select(fromAuth.selectLoginLoading)
   loginSuccess$ = this.store.select(fromAuth.selectLoginSuccess)
