@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-center">
+    <div class="login card p-2">
+        <h2 class="text-primary">
+            Login 
+            <div *ngIf="loginLoading$ | async" class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </h2>
+        <hr class="mt-1 mb-2" />
+        <div class="bg-primary text-light card py-2 mb-2 user-select-none" routerLink="/home">
+            <p class="mb-0 d-flex justify-content-between px-2">Continue as Guest <i class="bi bi-arrow-right-circle-fill arrow-large"></i></p>
+        </div>
+        <form (ngSubmit)="onLoginSubmit()">
+            <div class="mb-2">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" [(ngModel)]="email" name="email" class="form-control" id="email" required>
+                <div class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input [(ngModel)]="password" type="password" name="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+    </div>    
+</div>

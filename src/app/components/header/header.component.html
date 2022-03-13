@@ -1,0 +1,15 @@
+<nav class="navbar navbar-dark bg-dark mb-2">
+    <div class="container text-light">
+        <div class="d-flex justify-content-between w-100">
+            <div routerLink="/home">
+                <span class="navbar-brand mb-0 h1">Smart Vending</span>
+            </div>
+            <div *ngIf=" loginSuccess$|async " (click)="logout()">
+                <b>Logout</b>
+            </div>
+            <div *ngIf="!(loginSuccess$|async)" routerLink="/" >
+                <b>Login</b>
+            </div>
+        </div>
+    </div>
+</nav>

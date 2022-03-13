@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="mb-2">
+        <button class="btn btn-outline-primary w-50" routerLink="/home" >Products</button>
+        <button class="btn btn-primary w-50">Checkout</button>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <h5 class="mb-0 px-2">Cart Details</h5>
+                <hr class="my-1" />
+                <div class="row">
+                    <div class="col-12">
+                        <div
+                            *ngFor="let cartItem of cartItems$|async" 
+                            class="card"
+                        >
+                            <div 
+                                class="row"
+                            >
+                                <div class="col-3">
+                                    <div class="p-1">
+                                        <img src="{{getImageUrl(cartItem.img_name)}}" class="rounded w-100" alt="product">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div>
+                                        <b>{{cartItem.name}}</b>
+                                    </div>
+                                    <div>
+                                        <small>Qty : </small><i class="bi bi-dash-circle text-danger font-weight-bold" (click)="changeQty(cartItem._id,cartItem.quantity-1)" ></i> {{cartItem.quantity}} <i (click)="changeQty(cartItem._id,cartItem.quantity+1)" class="bi bi-plus-circle text-primary font-weight-bold"></i> 
+                                    </div>
+                                    <div>
+                                        <small>Unit Price : {{cartItem.cost | currency:'INR'}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="d-flex justify-content-end me-2">
+                                        <b>{{cartItem.quantity*cartItem.cost | currency:'INR'}}</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card px-2">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <b>Total Quantity : {{totalQty$ | async}}</b>
+                        </div>
+                        <div>
+                            <b>Total : {{totalCost$ | async | currency:'INR'}}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card px-2">
+                <div>
+                    <b>Total : {{totalCost$ | async | currency:'INR'}}</b>
+                </div>
+                <div>
+                    <b>Total Quantity : {{totalQty$ | async}}</b>
+                </div>
+                <div class="my-2">
+                    <button class="btn btn-secondary w-50" (click)="completePurchasing()">Reset Cart</button>
+                    <button class="btn btn-primary w-50" routerLink="/home" (click)="completePurchasing()">Complete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="card shadow">
+    <div class="product-quantity">
+        <b>{{quantity}}</b>
+    </div>
+    <div *ngIf="isAdmin$  | async" (click)="selectProduct()" class="edit-icon">
+        <i class="bi bi-pencil-square text-danger"></i>
+    </div>
+    <img src="{{getImageUrl()}}" class="card-img-top" alt="product">
+    <div class="card-body p-1">
+        <p class="card-title mb-0"><b>{{product.name}}</b></p>
+        <small class="card-text">{{product.info}}</small>
+    </div>
+    <div class="px-2 pb-1 stikey-bottom">
+        <b class="text-secondary">{{product.cost | currency:'INR'}}</b>
+        <button 
+            (click)="addToCart()"
+            class="btn btn-primary w-100">
+            Add to Cart
+            <i class="bi bi-plus-circle-fill"></i>
+        </button>
+    </div>
+</div>

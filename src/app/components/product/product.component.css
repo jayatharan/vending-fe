@@ -1,0 +1,18 @@
+.edit-icon {
+    position: absolute;
+    top:5px;
+    right: 5px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.product-quantity {
+    position: absolute;
+    top:5px;
+    left: 5px;
+    font-size: larger;
+    background-color: orange;
+    padding: 2px 5px;
+    color: white;
+    border-radius: 3px;
+}
