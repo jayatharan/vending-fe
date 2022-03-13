@@ -20,6 +20,8 @@ import { productReducer } from './state/product/product.reducer';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ProductEffect } from './state/product/product.effects';
 import { HeaderComponent } from './components/header/header.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,13 @@ import { HeaderComponent } from './components/header/header.component';
       ProductsEffects,
       ProductEffect
     ]),
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
