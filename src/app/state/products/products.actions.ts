@@ -16,3 +16,17 @@ export const retriveProductsFailure = createAction(
     props<{error:string}>()
 )
 
+export const retriveGridProductsRequest = createAction(
+    '[Products] Retrive Grid Products Request',
+    props<{row:number, column:number}>()
+)
+
+export const retriveGridProductsSuccess = createAction(
+    '[Products] Retrive Grid Products Success',
+    props<{products:Product[]}>()
+)
+
+export const retriveGridProductsFailure = createAction(
+    '[Products] Retrive Grid Products Failure',
+    props<{error:string}>()
+)

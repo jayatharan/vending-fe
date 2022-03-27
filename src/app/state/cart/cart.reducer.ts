@@ -17,11 +17,12 @@ export const initialCartState: CartState = {
 const _cartReducer = createReducer(
     initialCartState,
     on(addToCart, (state, {product})=>{
+        console.log(product)
         var cartItems = state.cartItems.map((item)=>item)
         var totalQty = 0
         var totalCost = 0
         var idx = cartItems.findIndex((item)=>{
-            if(item._id == product._id) return true
+            if(item.id == product.id) return true
             else return false
         })
         if(idx>-1){
@@ -47,7 +48,7 @@ const _cartReducer = createReducer(
         var totalQty = 0
         var totalCost = 0
         var idx = cartItems.findIndex((item)=>{
-            if(item._id == productId) return true
+            if(item.id == productId) return true
             else return false
         })
         if(idx>-1){

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Product } from '../model/product.model';
 import { Store } from '@ngrx/store';
 import * as fromAuth from '../state/auth/auth.selector'
@@ -23,6 +23,11 @@ export class ProductService {
 
   getProducts():Observable<Product[]> {
     return this.http.get<Product[]>(`${this.productApiurl}`)
+  }
+
+  getGridProducts(row:number, column:number):Observable<Product[]> {
+    let params = new HttpParams().set("row",row).set("column", column)
+    return this.http.get<Product[]>(`${this.productApiurl}/grid`, {params:params})
   }
   
   deleteProduct(productId:string):Observable<any> {

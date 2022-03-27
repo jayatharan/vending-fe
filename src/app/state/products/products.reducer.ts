@@ -1,12 +1,13 @@
 import { createReducer, on } from "@ngrx/store";
 import { Product } from "src/app/model/product.model";
-import { retriveProductsFailure, retriveProductsRequest, retriveProductsSuccess } from "./products.actions";
+import { retriveProductsFailure, retriveProductsRequest, retriveProductsSuccess, retriveGridProductsFailure, retriveGridProductsRequest, retriveGridProductsSuccess } from "./products.actions";
 
 export interface ProductsState {
     products?:Product[],
     loading:boolean,
     success:boolean,
-    error?:string
+    error?:string,
+    gridProducts?:Product[]
 }
 
 export const initialProductsState: ProductsState = {
@@ -19,6 +20,7 @@ const _productsReducer = createReducer(
     initialProductsState,
     on(retriveProductsSuccess, (state, { products })=> {
         return{
+            ...state,
             products,
             success:true,
             loading:false
@@ -26,6 +28,7 @@ const _productsReducer = createReducer(
     }),
     on(retriveProductsFailure, (state, {error})=>{
         return{
+            ...state,
             loading:false,
             success:true,
             error,
@@ -34,8 +37,15 @@ const _productsReducer = createReducer(
     }),
     on(retriveProductsRequest, (state, {})=>{
         return{
+            ...state,
             loading:true,
             success:false
+        }
+    }),
+    on(retriveGridProductsSuccess, (state, { products })=>{
+        return{
+            ...state,
+            gridProducts:products
         }
     })
 )

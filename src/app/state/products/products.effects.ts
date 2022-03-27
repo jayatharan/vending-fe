@@ -23,6 +23,22 @@ export class ProductsEffects {
         )
     )
 
+    gridProductsRequest$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(ProductsActions.retriveGridProductsRequest),
+            exhaustMap((action) =>
+                this.productService
+                .getGridProducts(action.row, action.column)
+                .pipe(
+                    map((products) =>
+                        ProductsActions.retriveGridProductsSuccess({products})
+                    ),
+                    catchError((error)=> of(ProductsActions.retriveProductsFailure(error)))
+                )
+            )
+        )
+    )
+
     constructor(
         private actions$: Actions,
         private productService: ProductService

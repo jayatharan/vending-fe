@@ -5,3 +5,4 @@ export const selectProductsState = createFeatureSelector<ProductsState>('product
 
 export const selectProducts = createSelector(selectProductsState, state=>state.products)
 export const selectProductsLoading = createSelector(selectProductsState, state=>state.loading)
+export const selectGridProducts = createSelector(selectProductsState, state=>state.gridProducts)

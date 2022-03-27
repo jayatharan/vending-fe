@@ -30,7 +30,7 @@ export class AuthEffects {
             this.actions$.pipe(
                 ofType(AuthActions.loginSuccess),
                 tap(({authData}) => 
-                    this.router.navigate(['/home'])
+                    this.router.navigate(['/admin'])
                 )
             ),
         {dispatch:false}            

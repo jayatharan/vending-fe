@@ -1,0 +1,21 @@
+<div class="card shadow">
+    <div class="product-quantity">
+        <b>{{quantity}}</b>
+    </div>
+    <div *ngIf="product.inventory" (click)="addToCart()" class="add-to-cart">
+        <i class="bi bi-plus-circle-fill"></i>
+    </div>
+    <img src="{{getImageUrl()}}" class="card-img-top" alt="product">
+    <div class="card-body p-1">
+        <small class="card-text">{{product.name}}</small>
+    </div>
+    <div class="px-2 pb-1 stikey-bottom">
+        <b class="text-secondary">{{product.cost | currency:'INR'}}</b>
+    </div>
+    <div *ngIf="!product.inventory" class="text-danger">
+        <small>Not Available</small>
+    </div>
+    <div *ngIf="product.inventory" class="text-primary px-2">
+        <small>Avl: {{product.inventory}}</small>
+    </div>
+</div>

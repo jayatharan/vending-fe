@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {AngularFireModule}  from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +24,9 @@ import { ProductEffect } from './state/product/product.effects';
 import { HeaderComponent } from './components/header/header.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardProductComponent } from './components/dashboard-product/dashboard-product.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +36,9 @@ import { environment } from '../environments/environment';
     ProductComponent,
     CheckoutComponent,
     EditProductComponent,
-    HeaderComponent
+    HeaderComponent,
+    DashboardComponent,
+    DashboardProductComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +56,8 @@ import { environment } from '../environments/environment';
       ProductEffect
     ]),
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
